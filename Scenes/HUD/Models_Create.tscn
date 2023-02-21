@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm2mtujq1i2tu"]
+
+[ext_resource type="PackedScene" uid="uid://b82d5cclnxh3s" path="res://Scenes/HUD/Model_C.tscn" id="1"]
+
+[sub_resource type="GDScript" id="2"]
+script/source = "extends PanelContainer
+
+
+func _input(event: InputEvent) -> void:
+	
+	if event is InputEventMouseButton:
+		if Input.is_mouse_button_pressed(1):
+			await get_tree().create_timer(0.5).timeout
+			queue_free()
+	
+"
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Button
+
+@export var Model : PackedScene
+@export var type:Mesh
+
+func _pressed() -> void:
+	
+	var model_b = Model.instantiate()
+	model_b.type=type
+	Index.world.Model.add_child(model_b)
+	
+	get_parent().get_parent().queue_free()
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_qrlht"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8fp5l"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r6nwd"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_ac0xe"]
+
+[node name="Models" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.382813
+anchor_bottom = 0.32
+script = SubResource("2")
+
+[node name="Vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Model_C" parent="Vbox" instance=ExtResource("1")]
+layout_mode = 2
+script = SubResource("1")
+type = SubResource("BoxMesh_qrlht")
+
+[node name="Model_C3" parent="Vbox" instance=ExtResource("1")]
+layout_mode = 2
+text = "BALL
+"
+script = SubResource("1")
+type = SubResource("SphereMesh_8fp5l")
+
+[node name="Model_C4" parent="Vbox" instance=ExtResource("1")]
+layout_mode = 2
+text = "Cyllinder"
+script = SubResource("1")
+type = SubResource("CylinderMesh_r6nwd")
+
+[node name="Model_C5" parent="Vbox" instance=ExtResource("1")]
+layout_mode = 2
+text = "Prism
+"
+script = SubResource("1")
+type = SubResource("PrismMesh_ac0xe")

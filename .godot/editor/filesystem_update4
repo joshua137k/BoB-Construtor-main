@@ -1,0 +1,6 @@
+res://Scenes/Models/mesh.tscn
+res://Script/Mesh.gd
+res://Scenes/World.tscn
+res://Scenes/vertice_manipulate.tscn
+res://Script/vertice_manipulate.gd
+res://Script/Player.gd

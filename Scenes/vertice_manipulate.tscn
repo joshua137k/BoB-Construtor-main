@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://brsb8r6iknvr2"]
+
+[ext_resource type="Script" path="res://Script/vertice_manipulate.gd" id="1_md65u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yoold"]
+albedo_color = Color(0.819608, 0.317647, 0.8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2plvy"]
+size = Vector3(0.05, 0.05, 0.05)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ag405"]
+points = PackedVector3Array(0.025, 0.025, 0.025, 0.025, 0.025, -0.025, -0.025, 0.025, 0.025, 0.025, -0.025, 0.025, 0.025, -0.025, -0.025, -0.025, 0.025, -0.025, -0.025, -0.025, 0.025, -0.025, -0.025, -0.025)
+
+[node name="VerticeManipulate" type="Area3D" groups=["mani"]]
+script = ExtResource("1_md65u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_yoold")
+mesh = SubResource("BoxMesh_2plvy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_ag405")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

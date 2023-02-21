@@ -1,0 +1,163 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw0ov5v3d7rgj"]
+
+[ext_resource type="Script" path="res://Script/Propriety.gd" id="1_68604"]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="2D" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="PanelContainer" parent="2D"]
+layout_mode = 0
+anchor_left = 0.8125
+anchor_top = 0.04
+anchor_right = 1.0
+anchor_bottom = 0.973333
+script = ExtResource("1_68604")
+
+[node name="MouseEntered" type="Panel" parent="2D/Panel"]
+layout_mode = 2
+
+[node name="vbox" type="VBoxContainer" parent="2D/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Nome" type="Label" parent="2D/Panel/vbox"]
+layout_mode = 2
+text = "NAME"
+
+[node name="Panel" type="PanelContainer" parent="2D/Panel/vbox"]
+layout_mode = 2
+
+[node name="Vbox" type="VBoxContainer" parent="2D/Panel/vbox/Panel"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="2D/Panel/vbox/Panel/Vbox"]
+layout_mode = 2
+text = "TRANSFORM"
+
+[node name="Translate" type="PanelContainer" parent="2D/Panel/vbox/Panel/Vbox"]
+layout_mode = 2
+
+[node name="Vbox" type="VBoxContainer" parent="2D/Panel/vbox/Panel/Vbox/Translate"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="2D/Panel/vbox/Panel/Vbox/Translate/Vbox"]
+layout_mode = 2
+text = "TRANSLATION"
+
+[node name="X" type="SpinBox" parent="2D/Panel/vbox/Panel/Vbox/Translate/Vbox"]
+layout_mode = 2
+min_value = -10000.0
+max_value = 10000.0
+step = 0.5
+prefix = "X"
+
+[node name="Y" type="SpinBox" parent="2D/Panel/vbox/Panel/Vbox/Translate/Vbox"]
+layout_mode = 2
+min_value = -10000.0
+max_value = 10000.0
+step = 0.5
+prefix = "Y"
+
+[node name="Z" type="SpinBox" parent="2D/Panel/vbox/Panel/Vbox/Translate/Vbox"]
+layout_mode = 2
+min_value = -10000.0
+max_value = 10000.0
+step = 0.5
+prefix = "Z"
+
+[node name="Step" type="SpinBox" parent="2D/Panel/vbox/Panel/Vbox/Translate/Vbox"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
+value = 0.5
+prefix = "Step"
+
+[node name="Rotation" type="PanelContainer" parent="2D/Panel/vbox/Panel/Vbox"]
+layout_mode = 2
+
+[node name="Vbox" type="VBoxContainer" parent="2D/Panel/vbox/Panel/Vbox/Rotation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox"]
+layout_mode = 2
+text = "ROTATION
+"
+
+[node name="X" type="SpinBox" parent="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox"]
+layout_mode = 2
+min_value = -360.0
+max_value = 360.0
+step = 0.5
+prefix = "X"
+
+[node name="Y" type="SpinBox" parent="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox"]
+layout_mode = 2
+min_value = -360.0
+max_value = 360.0
+step = 0.5
+prefix = "Y"
+
+[node name="Z" type="SpinBox" parent="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox"]
+layout_mode = 2
+min_value = -360.0
+max_value = 360.0
+step = 0.5
+prefix = "Z"
+
+[node name="Step" type="SpinBox" parent="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox"]
+layout_mode = 2
+max_value = 10.0
+step = 0.1
+value = 0.5
+prefix = "StepRot"
+
+[node name="Tree" type="PanelContainer" parent="2D"]
+layout_mode = 0
+anchor_top = 0.04
+anchor_right = 0.1875
+anchor_bottom = 0.973333
+
+[node name="Vbox" type="VBoxContainer" parent="2D/Tree"]
+layout_mode = 2
+
+[node name="Mesh_Text" type="Label" parent="2D/Tree/Vbox"]
+layout_mode = 2
+text = "MESH"
+
+[node name="Panel" type="PanelContainer" parent="2D/Tree/Vbox"]
+layout_mode = 2
+
+[node name="Mesh" type="VBoxContainer" parent="2D/Tree/Vbox/Panel"]
+layout_mode = 2
+
+[node name="Nod" type="Control" parent="2D"]
+anchors_preset = 0
+
+[connection signal="mouse_entered" from="2D/Panel/MouseEntered" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/MouseEntered" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox/Panel/Vbox/Translate/Vbox/X" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox/Panel/Vbox/Translate/Vbox/X" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox/Panel/Vbox/Translate/Vbox/Y" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox/Panel/Vbox/Translate/Vbox/Y" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox/Panel/Vbox/Translate/Vbox/Z" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox/Panel/Vbox/Translate/Vbox/Z" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox/Panel/Vbox/Translate/Vbox/Step" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox/Panel/Vbox/Translate/Vbox/Step" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox/X" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox/X" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox/Y" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox/Y" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox/Z" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox/Z" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]
+[connection signal="mouse_entered" from="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox/Step" to="2D/Panel" method="_on_mouse_entered_mouse_entered"]
+[connection signal="mouse_exited" from="2D/Panel/vbox/Panel/Vbox/Rotation/Vbox/Step" to="2D/Panel" method="_on_mouse_entered_mouse_exited"]

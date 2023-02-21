@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://dfpxa58hx8p58"]
+
+[ext_resource type="Script" path="res://Script/Main.gd" id="1_0a2o7"]
+[ext_resource type="Script" path="res://Script/Player.gd" id="2_h4rnm"]
+[ext_resource type="PackedScene" uid="uid://cy1seepx2ps5w" path="res://Scenes/Models/mesh.tscn" id="3_8ox81"]
+[ext_resource type="PackedScene" uid="uid://cw0ov5v3d7rgj" path="res://Scenes/gui.tscn" id="3_lnruo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ypfi"]
+
+[sub_resource type="PlaneMesh" id="2433"]
+
+[sub_resource type="BoxShape3D" id="2432"]
+size = Vector3(2, 0.002, 2)
+
+[sub_resource type="Sky" id="2"]
+
+[sub_resource type="Environment" id="3"]
+background_mode = 1
+background_color = Color(0.329412, 0.329412, 0.329412, 1)
+sky = SubResource("2")
+
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(0.405124, 0.408058, 0.437666)
+
+[sub_resource type="SphereMesh" id="2430"]
+radial_segments = 10
+rings = 4
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_0a2o7")
+
+[node name="Chao" type="Node3D" parent="."]
+
+[node name="M" type="MeshInstance3D" parent="Chao"]
+transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5ypfi")
+mesh = SubResource("2433")
+
+[node name="not" type="StaticBody3D" parent="Chao/M"]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Chao/M/not"]
+shape = SubResource("2432")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="Mesh" parent="Model" instance=ExtResource("3_8ox81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0606527, 2.0732, 0.0669973)
+
+[node name="Player" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.1956, 8.47591)
+
+[node name="Camera" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.899885, 0.436127, 0, -0.436127, 0.899885, 0, 0, 0)
+script = ExtResource("2_h4rnm")
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Camera"]
+target_position = Vector3(0, 0, -30)
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.194022, 0.617988, -0.76187, 0.0158689, 0.77455, 0.632314, 0.980869, -0.134773, 0.140473, 0, 4, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("3")
+
+[node name="Select" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Area" type="Area3D" parent="Select"]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Select/Area"]
+shape = SubResource("4")
+
+[node name="Model" type="MeshInstance3D" parent="Select"]
+transform = Transform3D(0.299992, 0, 0, 0, 0.299992, 0, 0, 0, 0.299992, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("2430")
+
+[node name="Pos" type="Node3D" parent="."]
+
+[node name="GUI" parent="." instance=ExtResource("3_lnruo")]
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[connection signal="body_entered" from="Select/Area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="Select/Area" to="." method="_on_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

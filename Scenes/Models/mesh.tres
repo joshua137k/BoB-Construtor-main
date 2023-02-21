@@ -1,0 +1,6 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://b1pfjgrqfe8co"]
+
+[resource]
+subdivide_width = 4
+subdivide_height = 4
+subdivide_depth = 4

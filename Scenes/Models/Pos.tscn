@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8rontbp8finu"]
+
+[sub_resource type="GDScript" id="6"]
+script/source = "extends Node3D
+
+
+func _process(_delta: float) -> void:
+	if is_instance_valid(Index.select):
+		global_transform.origin = Index.select.global_transform.origin
+	
+"
+
+[sub_resource type="BoxMesh" id="1"]
+
+[sub_resource type="BoxShape3D" id="3"]
+
+[node name="Pos" type="Node3D"]
+script = SubResource("6")
+
+[node name="X" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4657, 0, 0, 0, 0.141613, 0, 0, 0, 0.141613, 1.44189, -0.00541252, 0.00940308)
+cast_shadow = 0
+mesh = SubResource("1")
+
+[node name="pos" type="StaticBody3D" parent="X"]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="X/pos"]
+shape = SubResource("3")
+disabled = true
+
+[node name="Y" type="MeshInstance3D" parent="."]
+transform = Transform3D(-6.40676e-08, -0.141613, 0, 1.4657, -6.1901e-09, 0, 0, 0, 0.141613, -0.00320542, 1.36925, 0.0244367)
+cast_shadow = 0
+mesh = SubResource("1")
+
+[node name="pos" type="StaticBody3D" parent="Y"]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Y/pos"]
+shape = SubResource("3")
+disabled = true
+
+[node name="Z" type="MeshInstance3D" parent="."]
+transform = Transform3D(-6.40676e-08, 0, -0.141613, 0, 0.141613, 0, 1.4657, 0, -6.1901e-09, -0.0206786, 0.00143549, 1.3622)
+cast_shadow = 0
+mesh = SubResource("1")
+
+[node name="pos" type="StaticBody3D" parent="Z"]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Z/pos"]
+shape = SubResource("3")
+disabled = true

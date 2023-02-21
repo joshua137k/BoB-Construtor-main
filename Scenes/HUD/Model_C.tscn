@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b82d5cclnxh3s"]
+
+[ext_resource type="PackedScene" uid="uid://cmdoprvi5e3ia" path="res://Scenes/Models/Meshs.tscn" id="1_4n54x"]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Button
+
+@export var Model : PackedScene
+
+func _pressed() -> void:
+	
+	var model_b = Model.instance()
+	
+	Index.world.Model.add_child(model_b)
+	
+	model_b.global_transform.origin = Index.world.mouse_3D
+	
+
+"
+
+[node name="Model_C" type="Button"]
+text = "BOX"
+script = SubResource("1")
+Model = ExtResource("1_4n54x")
